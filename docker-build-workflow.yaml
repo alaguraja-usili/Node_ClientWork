@@ -1,0 +1,82 @@
+name: CrosshairX Automated Build
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  crosshairx-electron-win32_x64-build:
+    runs-on: ubuntu-latest
+    container:
+      image: electronuserland/builder:wine
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - CrosshairX:/CrosshairX
+      options: --cpus 1 --user root
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Investigate
+        run: |
+          pwd
+          whoami
+          ls -la
+          id -u
+          ls -la /github/home/
+          ls -la /root/.wine/
+          chmod -R 777 /github/home/
+          ls -la /github/home/
+          mkdir -p /__w/CrosshairX/CrosshairX/.wine
+          WINEARCH=win32 WINEPREFIX=/__w/CrosshairX/CrosshairX/.wine winecfg          
+      - name: NPN install
+        run: |
+          cd rootui-react
+          ls -la
+          npm install --legacy-peer-deps
+          npm install -D tailwindcss postcss autoprefixer --registry=https://registry.npmjs.org
+#      - name: Rebuild Electron
+#        run: |
+#          cd rootui-react
+#          ./node_modules/.bin/electron-rebuild
+      - name: Run Build For Steam
+        run: |
+          echo "Copying Steam Vars"
+          cp /__w/CrosshairX/CrosshairX/rootui-react/config/environmentVariables/steamvars.json /__w/CrosshairX/CrosshairX/rootui-react/config/environmentVariables/envVars.json
+          cd rootui-react
+          npm run build
+      - name: Package For Steam
+        run: |
+          cd rootui-react
+          mkdir -p /github/home/.wine
+          npm run packageForSteam
+          ls -la
+          ls -la build
+          ls -la CrosshairX-win32-x64
+      - name: Zip artifact for deployment
+        uses: TheDoctor0/zip-release@0.7.1
+        with:
+          type: 'tar'
+          exclusions: '*.tar.gz'
+          filename: CrosshairX-win32-x64-compiled.tar.gz
+          path: /__w/CrosshairX/CrosshairX/rootui-react/CrosshairX-win32-x64/
+          directory: /__w/CrosshairX/CrosshairX/
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: CrosshairX-win32-x64-compiled
+          path: |
+            /__w/CrosshairX/CrosshairX/CrosshairX-win32-x64-compiled.tar.gz
+          retention-days: 5          
+#      - name: Convert To Bundle
+#        run: |
+#          cd rootui-react
+#          npm run convertToBundle
+#          ls -la
+#          ls -la build
+#          ls -la output

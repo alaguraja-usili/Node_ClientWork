@@ -1,0 +1,22 @@
+.extensionChecklist {
+    list-style: none;
+    padding-left: 15px;
+  }
+  
+.incomplete:before {
+    color: red;
+    font-weight: bold;
+    content: '🗴';
+    padding-right: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.complete:before {
+    color: green;
+    font-weight: bold;
+    content: '✓';
+    padding-right: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+}

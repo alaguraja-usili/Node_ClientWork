@@ -1,0 +1,62 @@
+@import "../../../../common-assets/css/variables";
+// @import "../../../../common-assets/css/variables-night";
+@import "../../../../common-assets/css/rootui-parts/_plugin-pickr.scss";
+@import "../../../../common-assets/css/rootui-parts/messenger";
+@import "../../../../common-assets/css/rootui-parts/plugin-emojione-area";
+
+::-webkit-scrollbar {
+    width: 8px;
+    background:  $color_dark_1;
+    }
+    
+::-webkit-scrollbar-thumb {
+    background-color: $color_dark_2;
+}
+::-webkit-scrollbar-corner{
+    background:  $color_dark_1;
+}
+::-webkit-resizer{
+    background:$color_dark_1;
+}
+
+    
+.pcr-button {
+    width:15px !important;
+    height:15px !important;
+    float:right;
+}
+
+.demo {
+    padding: 20px !important;
+    border: 1px solid #2b2b2b !important;
+    border-radius: .25rem !important;
+    min-width: 300px !important;
+}
+
+.crosshair-slider-img {
+    max-width: 25px;
+    display: block;
+    margin: auto;
+}
+
+.rui-irs {
+    margin-top: 5px;
+}
+.description {
+    padding-left: 15px;
+    padding-right: 10px;
+}
+.tshape-toggle {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.btn-group {
+    padding-left: 5px;
+}
+
+.designer-heading {
+    margin-bottom: 10px!important;
+}

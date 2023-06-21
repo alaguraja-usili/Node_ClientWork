@@ -1,0 +1,50 @@
+name: Build App
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "release/**" ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-2022]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.14.2
+          cache: 'npm'
+      
+      - name: Fix nodert file references
+        shell: pwsh
+        run: |
+          $TARGET_WIN_KIT_DIR = "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.17134.0"
+          $PLATFORM_MD_FILE = "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.16.27023\lib\x86\store\references\platform.winmd"
+          $WIN_MD_FILE = "C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22621.0\Windows.winmd"
+          mkdir $TARGET_WIN_KIT_DIR
+          copy $PLATFORM_MD_FILE $TARGET_WIN_KIT_DIR
+          copy $WIN_MD_FILE $TARGET_WIN_KIT_DIR
+          dir $TARGET_WIN_KIT_DIR
+
+      - name: npm install
+        run: |
+          npm install --legacy-peer-deps
+
+      - name: Upload package-lock.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: package-lock
+          path: "D:\\a\\PackageBuild\\PackageBuild\\package-lock.json"
+          retention-days: 5
+          if-no-files-found: warn
+
+      - name: npm rebuild
+        run: |
+          ./node_modules/.bin/electron-rebuild

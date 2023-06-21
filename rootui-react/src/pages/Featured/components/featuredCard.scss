@@ -1,0 +1,37 @@
+// @import "~swiper/swiper-bundle.min.css";
+// @import "~chartist/dist/chartist.min.css";
+
+@import "../../../../../common-assets/css/variables";
+@import "../../../../../common-assets/css/rootui-parts/project-management";
+
+card-icon {
+    color: #575757;//$color_grey_4;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .15s ease-in-out, opacity .15s ease-in-out, color .15s ease-in-out;
+    &:hover,
+    &.hover {
+        color: #d1d1d1;//$color_text_1;
+    }
+}
+
+.position-top-right-icon {
+    margin-top: -60px;
+    align-self: flex-end;
+    margin-bottom: 15px;
+    margin-right: -5px;
+    z-index: 9;
+    position: relative;
+}
+
+.demo-icons {
+    min-height: 116px !important;
+}
+
+.cardStyle {
+    position: absolute;
+}
+
+.cardName {
+    padding-top: 10px
+}

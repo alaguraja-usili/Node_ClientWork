@@ -1,0 +1,9 @@
+output/
+steamPackage/
+AppxBundle.map
+CrosshairX.appxbundle
+steamPublishOutput/
+microsoftStorePublishOutput
+testRemove/
+sentry-cli-Windows-x86_64.exe
+Steam/

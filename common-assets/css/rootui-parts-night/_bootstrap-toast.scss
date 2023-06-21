@@ -1,0 +1,46 @@
+.toast {
+    background-color: $color_dropdown_bg;
+    border-color: $color_dropdown_border;
+    border-left-color: $color_brand;
+    box-shadow: 0 3px 10px $color_dropdown_shadow;
+}
+.toast-header {
+    background-color: $color_dropdown_bg;
+}
+.toast-date {
+    color: $color_dark_6;
+}
+.toast-close {
+    color: $color_dark_6;
+
+    &:hover {
+        color: $color_text_1;
+    }
+}
+.toast-primary {
+    border-left-color: $color_primary;
+}
+.toast-secondary {
+    border-left-color: $color_secondary;
+}
+.toast-success {
+    border-left-color: $color_secondary;
+}
+.toast-danger {
+    border-left-color: $color_danger;
+}
+.toast-warning {
+    border-left-color: $color_warning;
+}
+.toast-info {
+    border-left-color: $color_info;
+}
+.toast-light {
+    border-left-color: $color_light;
+}
+.toast-dark {
+    border-left-color: $color_dark;
+}
+.rui-toast-container .rui-toast {
+    background-color: $color_dropdown_bg;
+}

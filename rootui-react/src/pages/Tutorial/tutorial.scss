@@ -1,0 +1,17 @@
+// Modal background
+
+    .center-style {
+        align-self: center;
+    }
+    .wide {
+        max-width: 780px;//$modal-md;
+    }
+    .dropdown .dropdown-menu{ max-height:250px; overflow:auto; }
+
+    .usebasicoverlay:hover {
+        color: #fff!important;
+    }
+
+    .usebasicoverlay {
+        color: "#6c757d"!important;
+    }

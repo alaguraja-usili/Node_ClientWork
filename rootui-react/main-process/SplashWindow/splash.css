@@ -1,0 +1,24 @@
+#svg-target {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-backface-visibility: hidden;
+}
+
+#statusText {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-backface-visibility: hidden;
+    /* I need a sexy font, roboto is too serious */
+    font-family: 'Futura', sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
